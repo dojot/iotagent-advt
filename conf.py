@@ -7,4 +7,4 @@ CAName = os.environ.get("CA_NAME", "IOTmidCA")
 
 keyLength = int(os.environ.get("KEY_LENGTH", 4096))
 
-certsDir = os.environ.get("CERTS_DIR", "/opt/iotagent-advt/certs/")
+certsDir = os.environ.get("CERTS_DIR", "/opt/iotagent-json/certs/")

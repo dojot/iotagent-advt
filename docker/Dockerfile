@@ -1,15 +1,15 @@
 FROM node:8
 
-COPY . /opt/iotagent-advt/
-WORKDIR /opt/iotagent-advt
-
+WORKDIR /opt/iotagent-json
+ENV MQTT_TLS="false"
 RUN apt-get update \
     && apt-get install -y python-pip \
     &&  pip install pyopenssl
 
+COPY . /opt/iotagent-json/
 RUN npm install && npm run-script build
 
-RUN chmod +x /opt/iotagent-advt/entrypoint.sh \
-    && mkdir /opt/iotagent-advt/certs
+RUN chmod +x /opt/iotagent-json/entrypoint.sh \
+    && mkdir /opt/iotagent-json/certs
 
-CMD ["/opt/iotagent-advt/entrypoint.sh"]
+CMD ["/opt/iotagent-json/entrypoint.sh"]

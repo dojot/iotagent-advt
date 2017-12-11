@@ -73,10 +73,10 @@ function start(config: ConfigOptions, messageCallback: (topic: string, message:s
   let mqttClient = mqtt.connect(mqttConfig.url, mqttConfig.options);
   console.log('... connected.');
 
-  console.log('Registering callbacks...');
+  console.log('Registering MQTT callbacks...');
   mqttClient.on('message', messageCallback);
   mqttClient.on('connect', function () {
-    console.log('Subscribing to topics: ' + util.inspect(config.mqtt.topics));
+    console.log('Subscribing to all MQTT topics: ' + util.inspect(config.mqtt.topics));
     let topics: mqtt.Topic = {};
     for (let topic of config.mqtt.topics) {
       topics[topic] = 0;
@@ -88,10 +88,10 @@ function start(config: ConfigOptions, messageCallback: (topic: string, message:s
         console.log('Could not subscribe to topic: ' + error);
         callback(error);
       }
-      console.log('... subscribed.');
+      console.log('... MQTT subscribed.');
     });
   });
-  console.log('... callbacks registered.');
+  console.log('... MQTT callbacks registered.');
   console.log('... MQTT connection configured.');
 
   return mqttClient;
